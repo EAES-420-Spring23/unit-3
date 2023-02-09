@@ -109,13 +109,13 @@ If you need a refresher on what each variable is, look at the data dictionary at
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message.*
 
-1.  Use `glimpse()` to look at your new data frames. To do this, create a new code chunk under Exercise 2 in your starter file. Remember to include a code chunk label.
+2.  Use `glimpse()` to look at your new data frames. To do this, create a new code chunk under Exercise 2 in your starter file. Remember to include a code chunk label.
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message.*
 
 Next, let's simplify both datasets even further, so that they only contain U.S. state/region fish catch and stock event information for one fish species, **Chinook Salmon** (coded "CHS" in the `fish_stock` dataset), and one lake, **Michigan** (coded "MI" in the `fish_stock` dataset).
 
-1.  Copy the two code chunks below and complete them under Exercise 3 in the starter file. Remember, change `eval` to TRUE in the starter file, to make sure the chunk runs.
+3.  Copy the two code chunks below and complete them under Exercise 3 in the starter file. Remember, change `eval` to TRUE in the starter file, to make sure the chunk runs.
 
 ```{r filter-catch, eval = FALSE}
 catch_data <- catch_data %>% 
@@ -131,7 +131,7 @@ fish_stock <- fish_stock %>%
          LAKE == "MI")
 ```
 
-1.  Using in-line code within three separate statements, state how many rows (observations) are in each data set and which is the first (min) and last (max) year. Hint: remember to select a particular variable from a dataframe use the `$` sign. For instance: `data_frame$variable_name`.
+4.  Using in-line code within three separate statements, state how many rows (observations) are in each data set and which is the first (min) and last (max) year. Hint: remember to select a particular variable from a dataframe use the `$` sign. For instance: `data_frame$variable_name`.
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message.*
 
@@ -142,7 +142,7 @@ Remember that each row of the `fish_stock` dataset is a stocking event in a part
 Our next step to get these data frames ready to be merged is to compute annual sums for the Chinook Salmon stocking events in `fish_stock`.
 After this step, each row in both datasets will correspond with one year of fishing/stocking.
 
-1.  Write a code chunk under Exercise 6 in the starter file that combines `group_by()` and `summarise()` to perform this calculation. The summary variable name should be `STOCK_WEIGHT_YR` and is calculated as the sum of the `WEIGHT` column. Save the output data frame as `fish_stock_yearly`. Remember to label the chunk and to remove any NAs from your calculation.
+5.  Write a code chunk under Exercise 6 in the starter file that combines `group_by()` and `summarise()` to perform this calculation. The summary variable name should be `STOCK_WEIGHT_YR` and is calculated as the sum of the `WEIGHT` column. Save the output data frame as `fish_stock_yearly`. Remember to label the chunk and to remove any NAs from your calculation.
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message.*
 
@@ -172,7 +172,7 @@ catch_data <- catch_data %>%
 
 Our two datasets are now ready to be merged using a join function.
 
-1.  Copy and complete the 6 code chunks under Exercise 6 in your starter file to join these two data sets in 6 different ways (i.e. using `left_join()`, `right_join()`, `inner_join()`, `full_join()`, and `anti_join()` (in two different ways)). Look at the output of each chunk, and write a short narrative response about what the join function did. (I.e., Which rows were retained in the output data frame and why? What did R do when one of the two data frames did not contain a particular row?)
+6.  Copy and complete the 6 code chunks under Exercise 6 in your starter file to join these two data sets in 6 different ways (i.e. using `left_join()`, `right_join()`, `inner_join()`, `full_join()`, and `anti_join()` (in two different ways)). Look at the output of each chunk, and write a short narrative response about what the join function did. (I.e., Which rows were retained in the output data frame and why? What did R do when one of the two data frames did not contain a particular row?)
 
 ```{r left-join}
 # add your code
@@ -220,7 +220,7 @@ We can still tidy up our output a little more.
 Since both the catch and stocking weight columns are in units of 1000s of lbs, we can add both those columns of numerical values to single column named `weight_lbs` and create a new index column that specifies whether the row is `catch_weight_yr_lbs` or `stock_weight_yr_lbs`.
 We can do this using `pivot_longer()`.
 
-1.  Copy and complete the code chunk below under Exercise 7 in your starter file to make the data longer (and more tidy!). Remember to change eval = TRUE to run in your starter file.
+7.  Copy and complete the code chunk below under Exercise 7 in your starter file to make the data longer (and more tidy!). Remember to change eval = TRUE to run in your starter file.
 
 ```{r pivot-longer, eval = FALSE}
 catch_data %>% 
@@ -235,7 +235,7 @@ catch_data %>%
 Almost finished!
 For the last exercise, let's add to our pipeline from the previous exercise and visualize the stocking and fish catch variables.
 
-1.  Copy the code chunk below into Exercise 8 in your starter file. This code chunk should join the two datsets so that all the rows from `catch_data` are retained, then pivot_longer as in Exercise 7, then pipe the data into a `ggplot()` function. Map `year` to the x axis and`weight_lbs` to the y axis, and map `activity` to the color aesthetic. Then add (`+`) a geom layer for line plots, and finally add a clean theme layer such as `theme_bw()`. With a single sentence, describe the trends over time since the early 1990s in the stocking and fish catch size for Lake Michigan.
+8.  Copy the code chunk below into Exercise 8 in your starter file. This code chunk should join the two datsets so that all the rows from `catch_data` are retained, then pivot_longer as in Exercise 7, then pipe the data into a `ggplot()` function. Map `year` to the x axis and`weight_lbs` to the y axis, and map `activity` to the color aesthetic. Then add (`+`) a geom layer for line plots, and finally add a clean theme layer such as `theme_bw()`. With a single sentence, describe the trends over time since the early 1990s in the stocking and fish catch size for Lake Michigan.
 
 ```{r final-visualization, eval = FALSE}
 catch_data %>% 
